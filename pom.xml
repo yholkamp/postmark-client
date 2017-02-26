@@ -7,20 +7,52 @@
     <groupId>net.nextpulse</groupId>
     <artifactId>postmarkapp</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <url>https://github.com/yholkamp/postmark-client</url>
+    <name>PostmarkClient</name>
+    <description>An API client for the Postmark APIs, allowing both sending and receiving of email as well as account
+        management.
+    </description>
+
+    <developers>
+        <developer>
+            <id>yholkamp</id>
+            <name>Yorick Holkamp</name>
+            <email>yorick@nextpulse.net</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/yholkamp/jadmin</url>
+        <developerConnection>scm:git:ssh://git@github.com/yholkamp/postmark-client</developerConnection>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <swagger-core-version>1.5.9</swagger-core-version>
+        <swagger-core-version>1.5.12</swagger-core-version>
+        <swagger-annotations-version>1.5.12</swagger-annotations-version>
         <jodatime-version>2.9.3</jodatime-version>
-        <maven-plugin-version>1.0.0</maven-plugin-version>
-        <swagger-annotations-version>1.5.8</swagger-annotations-version>
         <jersey-version>1.19.1</jersey-version>
         <jackson-version>2.7.5</jackson-version>
         <junit-version>4.12</junit-version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -115,7 +147,7 @@
                             </configOptions>
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <templateDirectory>swagger-template</templateDirectory>
-                            <output>${project.build.directory}/codegen</output>
+                            <output>${project.build.directory}/codegen/server</output>
                         </configuration>
                     </execution>
                     <!-- Generate the account API -->
@@ -138,7 +170,7 @@
                             </configOptions>
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <templateDirectory>swagger-template</templateDirectory>
-                            <output>${project.build.directory}/codegen</output>
+                            <output>${project.build.directory}/codegen/account</output>
                         </configuration>
                     </execution>
                 </executions>
@@ -147,9 +179,9 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
                 <executions>
+                    <!-- Copy the generated sources and docs -->
                     <execution>
                         <id>copy-resources</id>
-                        <!-- here the phase you need -->
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -161,7 +193,6 @@
                                     <directory>${project.build.directory}/codegen</directory>
                                     <includes>
                                         <include>src/main/java/**/*</include>
-                                        <include>README.md</include>
                                         <include>docs/*.md</include>
                                     </includes>
                                 </resource>
@@ -170,6 +201,102 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Create the documentation index file for the accounts API-->
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-and-rename-account-readme</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>rename</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>${project.build.directory}/codegen/account/README.md</sourceFile>
+                            <destinationFile>${basedir}/docs/AccountApiIndex.md</destinationFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-and-rename-server-readme</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>rename</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>${project.build.directory}/codegen/server/README.md</sourceFile>
+                            <destinationFile>${basedir}/docs/ServerApiIndex.md</destinationFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Create the documentation index file for the servers API-->
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Set up the configuration to publish to the Sonatype repository -->
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <!-- Attach a sources jar -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Attach a JavaDoc jar -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Sign the jar with GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
