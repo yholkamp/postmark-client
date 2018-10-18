@@ -9,6 +9,8 @@ Class | Method | HTTP request | Description
 *DomainsAPIApi* | [**editDomain**](docs/DomainsAPIApi.md#editDomain) | **PUT** /domains/{domainid} | Update a Domain
 *DomainsAPIApi* | [**getDomain**](docs/DomainsAPIApi.md#getDomain) | **GET** /domains/{domainid} | Get a Domain
 *DomainsAPIApi* | [**listDomains**](docs/DomainsAPIApi.md#listDomains) | **GET** /domains | List Domains
+*DomainsAPIApi* | [**requestDkimVerificationForDomain**](docs/DomainsAPIApi.md#requestDkimVerificationForDomain) | **PUT** /domains/{domainid}/verifydkim | Request DNS Verification for DKIM
+*DomainsAPIApi* | [**requestReturnPathVerificationForDomain**](docs/DomainsAPIApi.md#requestReturnPathVerificationForDomain) | **PUT** /domains/{domainid}/verifyreturnpath | Request DNS Verification for Return-Path
 *DomainsAPIApi* | [**requestSPFVerificationForDomain**](docs/DomainsAPIApi.md#requestSPFVerificationForDomain) | **POST** /domains/{domainid}/verifyspf | Request DNS Verification for SPF
 *DomainsAPIApi* | [**rotateDKIMKeyForDomain**](docs/DomainsAPIApi.md#rotateDKIMKeyForDomain) | **POST** /domains/{domainid}/rotatedkim | Rotate DKIM Key
 *SenderSignaturesAPIApi* | [**createSenderSignature**](docs/SenderSignaturesAPIApi.md#createSenderSignature) | **POST** /senders | Create a Sender Signature

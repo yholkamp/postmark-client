@@ -14,16 +14,19 @@ Class | Method | HTTP request | Description
 *InboundRulesAPIApi* | [**deleteInboundRule**](docs/InboundRulesAPIApi.md#deleteInboundRule) | **DELETE** /triggers/inboundrules/{triggerid} | Delete a single trigger
 *InboundRulesAPIApi* | [**listInboundRules**](docs/InboundRulesAPIApi.md#listInboundRules) | **GET** /triggers/inboundrules | List inbound rule triggers
 *MessagesAPIApi* | [**bypassRulesForInboundMessage**](docs/MessagesAPIApi.md#bypassRulesForInboundMessage) | **PUT** /messages/inbound/{messageid}/bypass | Bypass rules for a blocked inbound message
+*MessagesAPIApi* | [**getClicksForSingleOutboundMessage**](docs/MessagesAPIApi.md#getClicksForSingleOutboundMessage) | **GET** /messages/outbound/clicks/{messageid} | Retrieve Message Clicks
 *MessagesAPIApi* | [**getInboundMessageDetails**](docs/MessagesAPIApi.md#getInboundMessageDetails) | **GET** /messages/inbound/{messageid}/details | Inbound message details
 *MessagesAPIApi* | [**getOpensForSingleOutboundMessage**](docs/MessagesAPIApi.md#getOpensForSingleOutboundMessage) | **GET** /messages/outbound/opens/{messageid} | Retrieve Message Opens
 *MessagesAPIApi* | [**getOutboundMessageDetails**](docs/MessagesAPIApi.md#getOutboundMessageDetails) | **GET** /messages/outbound/{messageid}/details | Outbound message details
 *MessagesAPIApi* | [**getOutboundMessageDump**](docs/MessagesAPIApi.md#getOutboundMessageDump) | **GET** /messages/outbound/{messageid}/dump | Outbound message dump
 *MessagesAPIApi* | [**retryInboundMessageProcessing**](docs/MessagesAPIApi.md#retryInboundMessageProcessing) | **PUT** /messages/inbound/{messageid}/retry | Retry a failed inbound message for processing
+*MessagesAPIApi* | [**searchClicksForOutboundMessages**](docs/MessagesAPIApi.md#searchClicksForOutboundMessages) | **GET** /messages/outbound/clicks | Clicks for a all messages
 *MessagesAPIApi* | [**searchInboundMessages**](docs/MessagesAPIApi.md#searchInboundMessages) | **GET** /messages/inbound | Inbound message search
-*MessagesAPIApi* | [**searchOpensForOutboundMessages**](docs/MessagesAPIApi.md#searchOpensForOutboundMessages) | **GET** /messages/outbound/opens | Opens for a single message
+*MessagesAPIApi* | [**searchOpensForOutboundMessages**](docs/MessagesAPIApi.md#searchOpensForOutboundMessages) | **GET** /messages/outbound/opens | Opens for all messages
 *MessagesAPIApi* | [**searchOutboundMessages**](docs/MessagesAPIApi.md#searchOutboundMessages) | **GET** /messages/outbound | Outbound message search
 *SendingAPIApi* | [**sendEmail**](docs/SendingAPIApi.md#sendEmail) | **POST** /email | Send a single email
 *SendingAPIApi* | [**sendEmailBatch**](docs/SendingAPIApi.md#sendEmailBatch) | **POST** /email/batch | Send a batch of emails
+*SendingAPIApi* | [**sendEmailBatchWithTemplates**](docs/SendingAPIApi.md#sendEmailBatchWithTemplates) | **POST** /email/batchWithTemplates | Send a batch of email using templates.
 *SendingAPIApi* | [**sendEmailWithTemplate**](docs/SendingAPIApi.md#sendEmailWithTemplate) | **POST** /email/withTemplate | Send an email using a Template
 *ServerConfigurationAPIApi* | [**editCurrentServerConfiguration**](docs/ServerConfigurationAPIApi.md#editCurrentServerConfiguration) | **PUT** /server | Edit Server Configuration
 *ServerConfigurationAPIApi* | [**getCurrentServerConfiguration**](docs/ServerConfigurationAPIApi.md#getCurrentServerConfiguration) | **GET** /server | Get Server Configuration
@@ -45,13 +48,14 @@ Class | Method | HTTP request | Description
 *TagTriggersAPIApi* | [**editTagTrigger**](docs/TagTriggersAPIApi.md#editTagTrigger) | **PUT** /triggers/tags/{triggerid} | Edit a single trigger
 *TagTriggersAPIApi* | [**getSingleTagTrigger**](docs/TagTriggersAPIApi.md#getSingleTagTrigger) | **GET** /triggers/tags/{triggerid} | Get a single trigger
 *TagTriggersAPIApi* | [**searcgTagTriggers**](docs/TagTriggersAPIApi.md#searcgTagTriggers) | **GET** /triggers/tags | Search triggers
-*TemplatesAPIApi* | [**deleteTemplate**](docs/TemplatesAPIApi.md#deleteTemplate) | **DELETE** /templates/{templateid} | Delete a Template
-*TemplatesAPIApi* | [**getSingleTemplate**](docs/TemplatesAPIApi.md#getSingleTemplate) | **GET** /templates/{templateid} | Get a Template
+*TemplatesAPIApi* | [**deleteTemplate**](docs/TemplatesAPIApi.md#deleteTemplate) | **DELETE** /templates/{templateIdOrAlias} | Delete a Template
+*TemplatesAPIApi* | [**getSingleTemplate**](docs/TemplatesAPIApi.md#getSingleTemplate) | **GET** /templates/{templateIdOrAlias} | Get a Template
 *TemplatesAPIApi* | [**listTemplates**](docs/TemplatesAPIApi.md#listTemplates) | **GET** /templates | Get the Templates associated with this Server
+*TemplatesAPIApi* | [**sendEmailBatchWithTemplates**](docs/TemplatesAPIApi.md#sendEmailBatchWithTemplates) | **POST** /email/batchWithTemplates | Send a batch of email using templates.
 *TemplatesAPIApi* | [**sendEmailWithTemplate**](docs/TemplatesAPIApi.md#sendEmailWithTemplate) | **POST** /email/withTemplate | Send an email using a Template
 *TemplatesAPIApi* | [**templatesPost**](docs/TemplatesAPIApi.md#templatesPost) | **POST** /templates | Create a Template
 *TemplatesAPIApi* | [**testTemplateContent**](docs/TemplatesAPIApi.md#testTemplateContent) | **POST** /templates/validate | Test Template Content
-*TemplatesAPIApi* | [**updateTemplate**](docs/TemplatesAPIApi.md#updateTemplate) | **PUT** /templates/{templateid} | Update a Template
+*TemplatesAPIApi* | [**updateTemplate**](docs/TemplatesAPIApi.md#updateTemplate) | **PUT** /templates/{templateIdOrAlias} | Update a Template
 
 
 ## Documentation for Models
@@ -71,10 +75,11 @@ Class | Method | HTTP request | Description
  - [EditTemplateRequest](docs/EditTemplateRequest.md)
  - [EmailNameAddressPair](docs/EmailNameAddressPair.md)
  - [EmailWithTemplateRequest](docs/EmailWithTemplateRequest.md)
+ - [ExtendedMessageClickEventInformation](docs/ExtendedMessageClickEventInformation.md)
+ - [ExtendedMessageClickEventInformationClient](docs/ExtendedMessageClickEventInformationClient.md)
+ - [ExtendedMessageClickEventInformationGeo](docs/ExtendedMessageClickEventInformationGeo.md)
+ - [ExtendedMessageClickEventInformationOS](docs/ExtendedMessageClickEventInformationOS.md)
  - [ExtendedMessageOpenEventInformation](docs/ExtendedMessageOpenEventInformation.md)
- - [ExtendedMessageOpenEventInformationClient](docs/ExtendedMessageOpenEventInformationClient.md)
- - [ExtendedMessageOpenEventInformationGeo](docs/ExtendedMessageOpenEventInformationGeo.md)
- - [ExtendedMessageOpenEventInformationOS](docs/ExtendedMessageOpenEventInformationOS.md)
  - [HeaderCollection](docs/HeaderCollection.md)
  - [InboundMessageDetail](docs/InboundMessageDetail.md)
  - [InboundMessageFullDetailsResponse](docs/InboundMessageFullDetailsResponse.md)
@@ -96,6 +101,7 @@ Class | Method | HTTP request | Description
  - [InlineResponse2008](docs/InlineResponse2008.md)
  - [InlineResponse2008Tags](docs/InlineResponse2008Tags.md)
  - [InlineResponse200Days](docs/InlineResponse200Days.md)
+ - [MessageClickSearchResponse](docs/MessageClickSearchResponse.md)
  - [MessageEventDetails](docs/MessageEventDetails.md)
  - [MessageEventDetailsDetails](docs/MessageEventDetailsDetails.md)
  - [MessageHeader](docs/MessageHeader.md)
@@ -109,6 +115,7 @@ Class | Method | HTTP request | Description
  - [SendEmailBatchResponse](docs/SendEmailBatchResponse.md)
  - [SendEmailRequest](docs/SendEmailRequest.md)
  - [SendEmailResponse](docs/SendEmailResponse.md)
+ - [SendEmailTemplatedBatchRequest](docs/SendEmailTemplatedBatchRequest.md)
  - [SentCountsResponse](docs/SentCountsResponse.md)
  - [SentCountsResponseDays](docs/SentCountsResponseDays.md)
  - [ServerConfigurationResponse](docs/ServerConfigurationResponse.md)

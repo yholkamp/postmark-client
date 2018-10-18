@@ -1,4 +1,4 @@
-# postmarkapp
+# Postmark-client
 
 A Java API client for the APIs offered by [Postmark](https://postmarkapp.com/api-explorer), allowing you to send and receive e-mail from your Java application using the Server API.
 Furthermore, you can configure your Postmark account using the Account API.
@@ -12,8 +12,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
     <groupId>net.nextpulse</groupId>
-    <artifactId>postmarkapp</artifactId>
-    <version>1.0.0</version>
+    <artifactId>postmark-client</artifactId>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -32,10 +32,10 @@ public class BouncesAPIApiExample {
 
     public static void main(String[] args) {
         BouncesAPIApi apiInstance = new BouncesAPIApi();
-        String xPostmarkServerToken = "xPostmarkServerToken_example"; // String | The token associated with the Server on which this request will operate.
+        String serverApiToken = "xPostmarkServerToken_example"; // String | The token associated with the Server on which this request will operate.
         Long bounceid = 789L; // Long | The ID of the Bounce to activate.
         try {
-            BounceActivationResponse result = apiInstance.activateBounce(xPostmarkServerToken, bounceid);
+            BounceActivationResponse result = apiInstance.activateBounce(serverApiToken, bounceid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BouncesAPIApi#activateBounce");
