@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <groupId>net.nextpulse</groupId>
     <artifactId>postmarkapp</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <url>https://github.com/yholkamp/postmark-client</url>
     <name>PostmarkClient</name>
     <description>An API client for the Postmark APIs, allowing both sending and receiving of email as well as account
@@ -41,9 +41,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <swagger-core-version>1.5.12</swagger-core-version>
         <swagger-annotations-version>1.5.21</swagger-annotations-version>
-        <jodatime-version>2.10</jodatime-version>
+        <jodatime-version>2.10.1</jodatime-version>
         <jersey-version>1.19.4</jersey-version>
-        <jackson-version>2.9.7</jackson-version>
+        <jackson-version>2.9.8</jackson-version>
         <junit-version>4.12</junit-version>
     </properties>
 
