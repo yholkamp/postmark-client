@@ -26,6 +26,7 @@ Class | Method | HTTP request | Description
 *ServerManagementAPIApi* | [**editServerInformation**](docs/ServerManagementAPIApi.md#editServerInformation) | **PUT** /servers/{serverid} | Edit a Server
 *ServerManagementAPIApi* | [**getServerInformation**](docs/ServerManagementAPIApi.md#getServerInformation) | **GET** /servers/{serverid} | Get a Server
 *ServerManagementAPIApi* | [**listServers**](docs/ServerManagementAPIApi.md#listServers) | **GET** /servers | List servers
+*TemplatesAPIApi* | [**pushTemplates**](docs/TemplatesAPIApi.md#pushTemplates) | **PUT** /templates/push | Push templates from one server to another
 
 
 ## Documentation for Models
@@ -47,6 +48,9 @@ Class | Method | HTTP request | Description
  - [SenderSignatureInformation](docs/SenderSignatureInformation.md)
  - [ServerListingResponse](docs/ServerListingResponse.md)
  - [StandardPostmarkResponse](docs/StandardPostmarkResponse.md)
+ - [TemplatesPushModel](docs/TemplatesPushModel.md)
+ - [TemplatesPushResponse](docs/TemplatesPushResponse.md)
+ - [TemplatesPushResponseTemplates](docs/TemplatesPushResponseTemplates.md)
 
 
 ## Documentation for Authorization

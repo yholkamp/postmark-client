@@ -38,7 +38,6 @@ Class | Method | HTTP request | Description
 *StatsAPIApi* | [**getOutboundOpenCounts**](docs/StatsAPIApi.md#getOutboundOpenCounts) | **GET** /stats/outbound/opens | Get email open counts
 *StatsAPIApi* | [**getOutboundOpenCountsByEmailClient**](docs/StatsAPIApi.md#getOutboundOpenCountsByEmailClient) | **GET** /stats/outbound/opens/emailclients | Get email client usage
 *StatsAPIApi* | [**getOutboundOpenCountsByPlatform**](docs/StatsAPIApi.md#getOutboundOpenCountsByPlatform) | **GET** /stats/outbound/opens/platforms | Get email platform usage
-*StatsAPIApi* | [**getOutboundOpenCountsByReadingTime**](docs/StatsAPIApi.md#getOutboundOpenCountsByReadingTime) | **GET** /stats/outbound/opens/readtimes | Get email read times
 *StatsAPIApi* | [**getOutboundOverviewStatistics**](docs/StatsAPIApi.md#getOutboundOverviewStatistics) | **GET** /stats/outbound | Get outbound overview
 *StatsAPIApi* | [**getSentCounts**](docs/StatsAPIApi.md#getSentCounts) | **GET** /stats/outbound/sends | Get sent counts
 *StatsAPIApi* | [**getSpamComplaints**](docs/StatsAPIApi.md#getSpamComplaints) | **GET** /stats/outbound/spam | Get spam complaints
