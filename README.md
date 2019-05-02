@@ -1,4 +1,6 @@
-# Postmark-client
+# DEPRECATED Postmark-client
+
+No longer maintained, with the arrival and active development of https://github.com/wildbit/postmark-java, users are strongly urged to use that library instead.
 
 A Java API client for the APIs offered by [Postmark](https://postmarkapp.com/api-explorer), allowing you to send and receive e-mail from your Java application using the Server API.
 Furthermore, you can configure your Postmark account using the Account API.
